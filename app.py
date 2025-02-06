@@ -64,8 +64,7 @@ if page == "🏠 Home":
     """)
 
     # Load example dataset 
-    dataset = "heart.csv"  
-    df = pd.DataFrame(dataset.data, columns=dataset.feature_names)
+    df = pd.read_csv("heart.csv") 
     
     st.subheader("📌 Dataset Statistics")
     st.write(df.describe())
