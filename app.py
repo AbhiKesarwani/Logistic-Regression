@@ -9,7 +9,7 @@ from sklearn.metrics import confusion_matrix
 # Load trained model
 @st.cache_resource
 def load_model():
-    return joblib.load("Heart_disease_model.joblib")  # Update with your model file
+    return joblib.load("Heart_disease_model.joblib") 
 
 model = load_model()
 
@@ -63,8 +63,8 @@ if page == "🏠 Home":
       - 1 = Heart disease detected  
     """)
 
-    # Load example dataset (replace with real heart dataset)
-    dataset = load_iris()  # Replace this with actual heart disease dataset
+    # Load example dataset 
+    dataset = "heart.csv"  
     df = pd.DataFrame(dataset.data, columns=dataset.feature_names)
     
     st.subheader("📌 Dataset Statistics")
