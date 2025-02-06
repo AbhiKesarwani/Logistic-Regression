@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import joblib
 import matplotlib.pyplot as plt
 from sklearn.datasets import load_iris
@@ -8,39 +7,36 @@ from sklearn.datasets import load_iris
 # Load trained model
 @st.cache_resource
 def load_model():
-    return joblib.load("Heart_disease_model.joblib")  # Update with your actual model
+    return joblib.load("Heart_disease_model.joblib")  # Update with your model file
 
 model = load_model()
 
 # Sidebar navigation
-page = st.sidebar.radio("📌 Select Page", ["Home", "Prediction"])
+st.sidebar.title("📌 Navigation")
+page = st.sidebar.radio("Go to:", ["🏠 Home", "🩺 Prediction"])
 
 ### 1️⃣ HOME PAGE ###
-if page == "Home":
+if page == "🏠 Home":
     st.title("❤️ Heart Disease Prediction App")
     st.write("This app predicts the likelihood of heart disease based on patient details.")
-    
-    # Dataset Insights (Example using Iris dataset, replace with yours)
-    dataset = load_iris()
+
+    # Dataset Insights
+    dataset = load_iris()  # Replace with heart disease dataset
     df = pd.DataFrame(dataset.data, columns=dataset.feature_names)
-    
+
     st.subheader("📊 Dataset Insights")
     st.write(df.describe())
 
-    # Feature Importance Placeholder (You can add actual model insights)
-    st.subheader("🔍 Feature Importance")
-    st.write("Top important features that influence the model predictions.")
-
-    # Example Graph (Update with actual heart disease dataset)
+    # Example Graph
     fig, ax = plt.subplots()
     ax.hist(df["sepal length (cm)"], bins=20, color="skyblue", edgecolor="black")
-    ax.set_title("Example: Distribution of Feature (Replace with Heart Data)")
+    ax.set_title("Example: Feature Distribution (Replace with Heart Data)")
     st.pyplot(fig)
 
     st.warning("⚠️ Disclaimer: This is a project and should not be used for real medical diagnosis.")
 
 ### 2️⃣ PREDICTION PAGE ###
-elif page == "Prediction":
+elif page == "🩺 Prediction":
     st.title("🩺 Heart Disease Prediction")
 
     # Sidebar Input Form
@@ -92,16 +88,10 @@ elif page == "Prediction":
         ax.set_ylim(0, 1)
         st.pyplot(fig)
 
-        # Insights
-        st.subheader("💡 Insights")
-        st.write(f"Probability of heart disease: {prediction_proba[0][1]:.2f}")
-        st.write(f"Probability of no heart disease: {prediction_proba[0][0]:.2f}")
-
-        # Warnings based on risk level
+        # Risk Level Alerts
         if prediction_proba[0][1] > 0.7:
             st.warning("⚠️ High risk! Consult a doctor immediately.")
         elif prediction_proba[0][1] > 0.4:
             st.info("ℹ️ Moderate risk. Consider a check-up.")
         else:
             st.success("🌟 Low risk. Maintain a healthy lifestyle!")
-
