@@ -67,21 +67,30 @@ if page == "🏠 Home":
     df = pd.read_csv("heart.csv") 
     
     st.subheader("📌 Dataset Statistics")
-    st.write(df.describe())
+    st.write(df.describe().transpose())
 
     # Example Graph
-    st.subheader("📈 Feature Distribution")
-    fig, ax = plt.subplots()
-    ax.hist(df["sepal length (cm)"], bins=20, color="skyblue", edgecolor="black")
-    ax.set_title("Example: Feature Distribution (Replace with Heart Data)")
+   st.subheader("📈 Correlation Heatmap")
+   fig, ax = plt.subplots(figsize=(10, 6))
+   sns.heatmap(df.corr(), annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5, ax=ax)
+   st.pyplot(fig)
+
+    st.subheader("📊 Heart Disease Count")
+    fig, ax = plt.subplots() 
+    sns.countplot(x=df["target"], palette=["green", "red"], ax=ax)
+    ax.set_xticklabels(["No Disease", "Heart Disease"])
     st.pyplot(fig)
+
+
 
     # Confusion Matrix
     st.subheader("📊 Model Performance - Confusion Matrix")
     
     # Generate a dummy confusion matrix (Replace this with actual test data)
-    y_true = [0, 1, 1, 0, 1, 0, 1, 0, 0, 1]  # Replace with real labels
-    y_pred = [0, 1, 1, 0, 1, 0, 0, 0, 1, 1]  # Replace with model predictions
+    y_pred = [0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1,
+       1, 1, 0, 1, 0, 1, 0, 0, 0]
+    y_true = [0,	1,	1,	1,	0,	1,	1,	0,	0,	1,	0,	1,	0,	1,	1,	1,	1,	1,	1,	0,	0,	0,	0,	0,	0,	1,	0,	1, 0,	1,	0]
+    y_true = [0, 1, 1, 0, 1, 0, 0, 0, 1, 1]  # Replace with model predictions
 
     cm = confusion_matrix(y_true, y_pred)
     
