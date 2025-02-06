@@ -70,10 +70,10 @@ if page == "🏠 Home":
     st.write(df.describe().transpose())
 
     # Example Graph
-   st.subheader("📈 Correlation Heatmap")
-   fig, ax = plt.subplots(figsize=(10, 6))
-   sns.heatmap(df.corr(), annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5, ax=ax)
-   st.pyplot(fig)
+    st.subheader("📈 Correlation Heatmap")
+    fig, ax = plt.subplots(figsize=(10, 6))
+    sns.heatmap(df.corr(), annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5, ax=ax)
+    st.pyplot(fig)
 
     st.subheader("📊 Heart Disease Count")
     fig, ax = plt.subplots() 
@@ -81,16 +81,12 @@ if page == "🏠 Home":
     ax.set_xticklabels(["No Disease", "Heart Disease"])
     st.pyplot(fig)
 
-
-
     # Confusion Matrix
     st.subheader("📊 Model Performance - Confusion Matrix")
     
     # Generate a dummy confusion matrix (Replace this with actual test data)
-    y_pred = [0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1,
-       1, 1, 0, 1, 0, 1, 0, 0, 0]
-    y_true = [0,	1,	1,	1,	0,	1,	1,	0,	0,	1,	0,	1,	0,	1,	1,	1,	1,	1,	1,	0,	0,	0,	0,	0,	0,	1,	0,	1, 0,	1,	0]
-    y_true = [0, 1, 1, 0, 1, 0, 0, 0, 1, 1]  # Replace with model predictions
+    y_pred = [0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0]
+    y_true = [0, 1,	1,	1,	0,	1,	1,	0,	0,	1,	0,	1,	0,	1,	1,	1,	1,	1,	1,	0,	0,	0,	0,	0,	0,	1,	0,	1, 0,	1,	0]
 
     cm = confusion_matrix(y_true, y_pred)
     
