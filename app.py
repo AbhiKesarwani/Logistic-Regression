@@ -65,13 +65,11 @@ if page == "🏠 Home":
       - 1 = Heart disease detected  
     """)
 
-    # Load example dataset 
     df = pd.read_csv("heart.csv") 
     
     st.subheader("📌 Dataset Statistics")
     st.write(df.describe().transpose())
 
-    # Example Graph
     st.subheader("📈 Correlation Heatmap")
     fig, ax = plt.subplots(figsize=(10, 6))
     sns.heatmap(df.corr(), annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5, ax=ax)
@@ -86,9 +84,8 @@ if page == "🏠 Home":
     # Confusion Matrix
     st.subheader("📊 Model Performance - Confusion Matrix")
     
-    # Generate a dummy confusion matrix (Replace this with actual test data)
     y_pred = [0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0]
-    y_true = [0, 1,	1,	1,	0,	1,	1,	0,	0,	1,	0,	1,	0,	1,	1,	1,	1,	1,	1,	0,	0,	0,	0,	0,	0,	1,	0,	1, 0,	1,	0]
+    y_true = [0, 1,	1, 1, 0, 1,	1, 0, 0, 1,	0, 1, 0, 1,	1, 1, 1, 1,	1, 0, 0, 0,	0, 0, 0, 1,	0, 1, 0, 1,	0]
 
     cm = confusion_matrix(y_true, y_pred)
     
@@ -133,7 +130,6 @@ elif page == "🩺 Prediction":
     st.subheader("📋 Entered Patient Data")
     st.write(input_data)
 
-    # Predict button
     if st.button("🔍 Predict"):
         prediction = model.predict(input_data)
         prediction_proba = model.predict_proba(input_data)
