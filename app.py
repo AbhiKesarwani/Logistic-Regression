@@ -13,6 +13,8 @@ def load_model():
 
 model = load_model()
 
+st.warning("⚠️ **Disclaimer**: This is a project and should not be used for real medical diagnosis.")
+
 # Sidebar navigation
 st.sidebar.title("📌 Navigation")
 page = st.sidebar.radio("Go to:", ["🏠 Home", "🩺 Prediction"])
@@ -96,8 +98,6 @@ if page == "🏠 Home":
     ax.set_ylabel("True Label")
     ax.set_title("Confusion Matrix")
     st.pyplot(fig)
-
-    st.warning("⚠️ **Disclaimer**: This is a project and should not be used for real medical diagnosis.")
 
 ### 2️⃣ PREDICTION PAGE ###
 elif page == "🩺 Prediction":
