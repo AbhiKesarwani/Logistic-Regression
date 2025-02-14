@@ -64,8 +64,3 @@ This project is for **educational purposes only** and should not be used for rea
 
 ## 💬 Suggestions & Contributions
 Feedback and discussions are always welcome! If you have any ideas for improving the project, feel free to contribute or connect with me.
-
----
-✉️ **Open to Data Science & Python internships!**  
-Connect with me on LinkedIn 🚀
-
